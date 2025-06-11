@@ -18,4 +18,4 @@ def send_request(api_id):
     try:
         print(response.json())
     except Exception:
-        print("Brak JSON-a w odpowiedzi.")
+        print("There is no JSON in answer")

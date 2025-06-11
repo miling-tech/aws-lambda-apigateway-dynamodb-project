@@ -20,11 +20,11 @@ def create_lambda_function_from_zip_file():
             Code={'ZipFile': zipped_code},
             Publish=True,
         )
-        print("Funkcja utworzona:", response['FunctionName'])
+        print("Created function:", response['FunctionName'])
     except lambda_client.exceptions.ResourceConflictException:
-        print("Funkcja już istnieje, aktualizuję kod...")
+        print("Function already exists, updating code...")
         response = lambda_client.update_function_code(
             FunctionName='my-lambda-function',
             ZipFile=zipped_code
         )
-        print("Funkcja zaktualizowana:", response['FunctionName'])
+        print("Updated function:", response['FunctionName'])

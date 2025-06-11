@@ -1,5 +1,3 @@
-import boto3
-
 import createLambdaFunctionFromZipFile
 import create_api
 import dynamodb
