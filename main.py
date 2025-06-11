@@ -6,7 +6,7 @@ dynamodb = boto3.resource(
     endpoint_url='http://localhost:4566'
 )
 
-def createBasicDynamoDBTable():
+def create_basic_dynamodb_table():
     table = dynamodb.create_table(
         TableName='Roles',
         KeySchema=[{
@@ -21,13 +21,13 @@ def createBasicDynamoDBTable():
     )
     table.wait_until_exists()
 
-def dynamoDBMain():
-    if not isTableExisting('Roles'):
-        createBasicDynamoDBTable()
-    putItemIntoTable()
+def dynamo_db_main():
+    if not is_table_existing('Roles'):
+        create_basic_dynamodb_table()
+    put_item_into_table()
 
 
-def isTableExisting(table_name):
+def is_table_existing(table_name):
     client = boto3.client('dynamodb', endpoint_url='http://localhost:4566')
     tables = client.list_tables()['TableNames']
     if table_name in tables:
@@ -36,14 +36,14 @@ def isTableExisting(table_name):
         return False
 
 
-def putItemIntoTable():
+def put_item_into_table():
     table = dynamodb.Table('Roles')
     table.put_item(Item={
         'id': '1', 'type': 'Administrator', 'permissions': {
             'FullAccess': 'True', 'AllCosts': 'True'
         }})
 
-def showingAllTablesInDynamoDB():
+def showing_all_tables_in_dynamo_db():
     client = boto3.client('dynamodb', endpoint_url='http://localhost:4566')
     tables = client.list_tables()['TableNames']
     for table in tables:
@@ -51,6 +51,6 @@ def showingAllTablesInDynamoDB():
 
 
 if __name__ == '__main__':
-    dynamoDBMain()
+    dynamo_db_main()
     print('--------')
-    showingAllTablesInDynamoDB()
+    showing_all_tables_in_dynamo_db()
