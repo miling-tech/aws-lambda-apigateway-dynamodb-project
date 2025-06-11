@@ -55,5 +55,4 @@ def showing_all_tables_in_dynamo_db():
 
 if __name__ == '__main__':
     dynamo_db_main()
-    print('--------')
     showing_all_tables_in_dynamo_db()
